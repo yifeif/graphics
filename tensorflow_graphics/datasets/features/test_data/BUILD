@@ -11,25 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# Datasets for tf-graphics.
-
-# google internal package dependency 8
-
 licenses(["notice"])  # Apache 2.0
 
-package(default_visibility = ["//visibility:public"])
+package(
+    default_testonly = 1,
+    default_visibility = ["//visibility:public"],
+)
 
-py_library(
-    name = "datasets",
-    srcs = ["__init__.py"],
-    srcs_version = "PY2AND3",
-    # google internal rule 1
-    visibility = ["//visibility:public"],
-    deps = [
-        "//tensorflow_graphics/datasets/features",
-        "//tensorflow_graphics/datasets/modelnet40",
-        "//tensorflow_graphics/datasets/shapenet",
-        "//tensorflow_graphics/util:doc",
-        "//tensorflow_graphics/util:export_api",
-    ],
+filegroup(
+    name = "test_data",
+    srcs = glob([
+        "*",
+    ]),
 )

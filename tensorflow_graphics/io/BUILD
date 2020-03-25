@@ -11,25 +11,27 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# Datasets for tf-graphics.
-
-# google internal package dependency 8
-
 licenses(["notice"])  # Apache 2.0
 
-package(default_visibility = ["//visibility:public"])
+package(
+    default_visibility = ["//visibility:public"],
+)
 
 py_library(
-    name = "datasets",
+    name = "io",
     srcs = ["__init__.py"],
-    srcs_version = "PY2AND3",
-    # google internal rule 1
-    visibility = ["//visibility:public"],
     deps = [
-        "//tensorflow_graphics/datasets/features",
-        "//tensorflow_graphics/datasets/modelnet40",
-        "//tensorflow_graphics/datasets/shapenet",
-        "//tensorflow_graphics/util:doc",
+        ":triangle_mesh",
         "//tensorflow_graphics/util:export_api",
+    ],
+)
+
+py_library(
+    name = "triangle_mesh",
+    srcs = ["triangle_mesh.py"],
+    deps = [
+        # google internal package dependency 1,
+        "//tensorflow_graphics/util:doc",
+        "//third_party/py/trimesh",
     ],
 )

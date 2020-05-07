@@ -50,6 +50,7 @@ cc_library(
         "-parse_headers",
     ],
     includes = ["."],
+    linkopts = ['-Wl,-L/usr/lib/x86_64-linux-gnu/mesa-egl','-Wl,-L/usr/lib/x86_64-linux-gnu', '-Wl,-lEGL', '-Wl,-lGLESv2'],
 )
 
 cc_library(
@@ -61,9 +62,11 @@ cc_library(
         ":egl_util",
         ":macros",
         "//tensorflow_graphics/util:cleanup",
-        "@local_config_tf//:tf_header_lib"
-,
+        "@local_config_tf//:tf_header_lib",
+        "@local_config_tf//:libtensorflow_framework",
     ],
+    copts = ["-pthread", "-std=c++11", "-D_GLIBCXX_USE_CXX11_ABI=0"],
+    linkopts = ['-Wl,-L/usr/lib/x86_64-linux-gnu/mesa-egl','-Wl,-L/usr/lib/x86_64-linux-gnu', '-Wl,-lEGL', '-Wl,-lGLESv2'],
 )
 
 cc_test(
@@ -76,9 +79,10 @@ cc_test(
     deps = [
         ":egl_offscreen_context",
         ":gl_native_libs",
-#        "//third_party/tensorflow/core:test",
         "@com_google_googletest//:gtest_main",
     ],
+    copts = ["-pthread", "-std=c++11", "-D_GLIBCXX_USE_CXX11_ABI=0"],
+    linkopts = ['-Wl,-rpath,/usr/lib/x86_64-linux-gnu/mesa-egl', '-Wl,-rpath,/usr/lib/x86_64-linux-gnu'],
 )
 
 cc_library(
@@ -107,18 +111,15 @@ cc_library(
     visibility = ["//visibility:private"],
     deps = [
         ":EGL_headers",
-        "@local_config_tf//:tf_header_lib"
-,
+        "@local_config_tf//:tf_header_lib",
         "@com_google_absl//absl/strings",
     ],
+    linkopts = ['-Wl,-L/usr/lib/x86_64-linux-gnu/mesa-egl','-Wl,-L/usr/lib/x86_64-linux-gnu', '-Wl,-lEGL', '-Wl,-lGLESv2'],
 )
 
 cc_library(
     name = "gl_native_libs",
-    linkopts = [
-        "-lEGL",
-        "-lGLESv2",
-    ],
+    linkopts = ['-Wl,-L/usr/lib/x86_64-linux-gnu/mesa-egl','-Wl,-L/usr/lib/x86_64-linux-gnu', '-Wl,-lEGL', '-Wl,-lGLESv2'],
     alwayslink = 1,
 )
 
@@ -337,6 +338,8 @@ cc_binary(
         "@com_google_absl//absl/base",
         "@com_google_absl//absl/synchronization",
     ],
+    copts = ["-pthread", "-std=c++11", "-D_GLIBCXX_USE_CXX11_ABI=0"],
+    linkopts = ['-Wl,-L/usr/lib/x86_64-linux-gnu/mesa-egl','-Wl,-L/usr/lib/x86_64-linux-gnu', '-Wl,-lEGL', '-Wl,-lGLESv2'],
 )
 
 #tf_gen_op_wrapper_py(
@@ -396,6 +399,7 @@ cc_library(
         "@local_config_tf//:tf_header_lib"
 ,
     ],
+    copts = ["-pthread", "-std=c++11", "-D_GLIBCXX_USE_CXX11_ABI=0"],
 )
 
 cc_test(

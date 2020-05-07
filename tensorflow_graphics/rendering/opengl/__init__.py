@@ -17,6 +17,12 @@ from __future__ import division
 from __future__ import print_function
 
 from tensorflow_graphics.rendering.opengl import math
+from tensorflow.python.framework import load_library
+from tensorflow.python.platform import resource_loader
+
+rasterizer_op = load_library.load_op_library(
+    resource_loader.get_path_to_datafile('rasterizer_op.so'))
+
 # # google internal import 1
 from tensorflow_graphics.util import export_api as _export_api
 

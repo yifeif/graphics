@@ -35,6 +35,7 @@ py_library(
         # ":triangle_rasterizer",
         "//tensorflow_graphics/util:export_api",
     ],
+    data = [":rasterizer_op.so"],
 )
 
 cc_library(
@@ -377,9 +378,9 @@ py_test(
     # google internal rule 9
     # google internal rule 10
     deps = [
-        ":gl_native_libs",
+        #":gl_native_libs",
         ":math",
-        ":rasterizer_op_py",
+        ":opengl",
         # google internal package dependency 2
         # google internal package dependency 6
         #"//third_party/py/six",

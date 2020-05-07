@@ -22,7 +22,7 @@ import numpy as np
 import six
 import tensorflow as tf
 
-from tensorflow_graphics.rendering.opengl import gen_rasterizer_op as rasterizer
+from tensorflow_graphics.rendering.opengl import rasterizer_op as rasterizer
 from tensorflow_graphics.rendering.opengl import math as glm
 from tensorflow_graphics.util import test_case
 

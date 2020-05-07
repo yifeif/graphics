@@ -15,6 +15,18 @@ workspace(name = "tensorflow_graphics")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+load("//tf:tf_configure.bzl", "tf_configure")
+
+tf_configure(name = "local_config_tf")
+
+
+http_archive(
+    name = "com_google_absl",
+    sha256 = "f368a8476f4e2e0eccf8a7318b98dafbe30b2600f4e3cf52636e5eb145aba06a",
+    strip_prefix = "abseil-cpp-df3ea785d8c30a9503321a3d35ee7d35808f190d",
+    url = "https://github.com/abseil/abseil-cpp/archive/df3ea785d8c30a9503321a3d35ee7d35808f190d.tar.gz",
+)
+
 http_archive(
     name = "bazel_skylib",
     url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.0/bazel-skylib-1.0.0.tar.gz",
